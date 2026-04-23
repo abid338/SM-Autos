@@ -8,7 +8,7 @@ function findVehicleById(vehicleId) {
     }
   }
   return null;
-}// Render vehicle details
+} // Render vehicle details
 function renderVehicleDetails(vehicle) {
   const container = document.getElementById("vehicle-details");
   if (!container || !vehicle) {
@@ -24,15 +24,15 @@ function renderVehicleDetails(vehicle) {
     `;
     return;
   }
-// breadcrumb
+  // breadcrumb
   const breadcrumb = document.getElementById("breadcrumb-title");
   if (breadcrumb) {
     breadcrumb.textContent = vehicle.name;
   }
-// page title
+  // page title
   document.title = `${vehicle.name} - PakWheels`;
-const badgeClass = vehicle.status === "NEW" ? "bg-success" : "bg-warning";
-const html = `
+  const badgeClass = vehicle.status === "NEW" ? "bg-success" : "bg-warning";
+  const html = `
     <div class="row g-4">
       <!-- Vehicle Image -->
       <div class="col-lg-6">
@@ -152,7 +152,7 @@ const html = `
               <div class="col-md-4">
                 <p class="mb-2">
                   <i class="fas fa-check-circle text-success"></i>
-                  <strong>Documents:</strong> Complete
+                  <strong>Documents:</strong> Complete 
                 </p>
               </div>
             </div>
@@ -163,10 +163,10 @@ const html = `
   `;
   container.innerHTML = html;
 }
-// Find related vehicles 
+// Find related vehicles
 function findRelatedVehicles(currentVehicle, limit = 4) {
   const related = [];
- for (const section of vehiclesData) {
+  for (const section of vehiclesData) {
     if (section.category === currentVehicle.category) {
       for (const vehicle of section.vehicles) {
         if (vehicle.id !== currentVehicle.id) {
@@ -177,13 +177,13 @@ function findRelatedVehicles(currentVehicle, limit = 4) {
     }
     if (related.length >= limit) break;
   }
- return related;
+  return related;
 }
 // Render related vehicles
 function renderRelatedVehicles(vehicles) {
   const container = document.getElementById("related-vehicles");
   if (!container) return;
-if (vehicles.length === 0) {
+  if (vehicles.length === 0) {
     container.innerHTML = `
       <div class="col-12">
         <p class="text-muted text-center">No related vehicles found.</p>
@@ -191,7 +191,7 @@ if (vehicles.length === 0) {
     `;
     return;
   }
-let html = "";
+  let html = "";
   vehicles.forEach((vehicle) => {
     const badgeClass = vehicle.status === "NEW" ? "bg-success" : "bg-warning";
     html += `
@@ -224,9 +224,9 @@ window.onload = function () {
   renderNavbar();
   renderFooter();
   renderFloatingWhatsApp();
-// Get vehicle ID from URL
+  // Get vehicle ID from URL
   const vehicleId = getUrlParameter("id");
-if (!vehicleId) {
+  if (!vehicleId) {
     const container = document.getElementById("vehicle-details");
     container.innerHTML = `
       <div class="alert alert-warning text-center">
@@ -240,10 +240,10 @@ if (!vehicleId) {
     `;
     return;
   }
-// Find and render vehicle
+  // Find and render vehicle
   const vehicle = findVehicleById(vehicleId);
   renderVehicleDetails(vehicle);
-// Render related vehicles if vehicle found
+  // Render related vehicles if vehicle found
   if (vehicle) {
     const relatedVehicles = findRelatedVehicles(vehicle);
     renderRelatedVehicles(relatedVehicles);

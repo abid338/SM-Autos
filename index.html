@@ -3,80 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PakWheels - Pakistan's #1 platform for buying and selling vehicles." />
+    <meta name="keywords" content="Pakistan cars, bikes, vehicles, buy sell, PakWheels" />
     <title>PakWheels - Buy & Sell Vehicles</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   </head>
   <body>
-    <!-- NAVBAR CONTAINER-->
+
+    <!-- NAVBAR -->
     <div id="navbar-container"></div>
+
     <!-- HERO SECTION -->
-    <div class="hero-section text-white text-center py-5">
+    <section class="hero-section text-white text-center py-5" aria-label="Search vehicles">
       <div class="container py-4">
-        <h1 class="display-4 fw-bold mb-3">Find Used Cars in Pakistan</h1>
-        <p class="lead mb-5">
-          With thousands of cars, we have just the right one for you
-        </p>
+        <h1 class="fw-bold mb-3">Find Used Cars in Pakistan</h1>
+        <p class="lead mb-5">With thousands of vehicles, we have just the right one for you</p>
+
         <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="card shadow-lg border-0">
+          <div class="col-lg-9 col-xl-8">
+            <div class="hero-search-card card">
               <div class="card-body p-0">
-                <div class="row g-0">
-                  <div class="col-lg-4">
-                    <input
-                      type="text"
-                      class="form-control form-control-lg border-0 h-100"
-                      id="hero-keyword"
-                      placeholder="Car Make or Model"
-                    />
+                <form role="search" onsubmit="return false;">
+                  <div class="row g-0">
+                    <div class="col-lg-4">
+                      <label for="hero-keyword" class="visually-hidden">Car Make or Model</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        id="hero-keyword"
+                        placeholder="Car Make or Model"
+                        aria-label="Search by car make or model"
+                      />
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="city-select" class="visually-hidden">Select City</label>
+                      <select class="form-select form-select-lg" id="city-select" aria-label="Select city">
+                        <!-- Rendered by data.js -->
+                      </select>
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="price-select" class="visually-hidden">Select Price Range</label>
+                      <select class="form-select form-select-lg" id="price-select" aria-label="Select price range">
+                        <!-- Rendered by data.js -->
+                      </select>
+                    </div>
+                    <div class="col-lg-2">
+                      <button
+                        type="button"
+                        class="btn search-btn w-100 h-100 fw-bold fs-5"
+                        aria-label="Search vehicles"
+                      >
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div class="col-lg-3">
-                    <select
-                      class="form-select form-select-lg border-0 h-100"
-                      id="city-select"
-                    >
-                      <!-- rendered by data.js -->
-                    </select>
-                  </div>
-                  <div class="col-lg-3">
-                    <select
-                      class="form-select form-select-lg border-0 h-100"
-                      id="price-select"
-                    >
-                      <!-- rendered by data.js -->
-                    </select>
-                  </div>
-                  <div class="col-lg-2">
-                    <button
-                      class="btn search-btn text-white w-100 h-100 fw-bold fs-5 border-0"
-                    >
-                      <i class="fas fa-search"></i>
-                    </button>
-                  </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Quick Stats -->
+        <div class="row justify-content-center mt-4 g-3">
+          <div class="col-auto">
+            <span class="badge bg-white bg-opacity-10 text-white px-3 py-2 rounded-pill">
+              <i class="fas fa-car me-1 text-primary-brand"></i> 10,000+ Cars
+            </span>
+          </div>
+          <div class="col-auto">
+            <span class="badge bg-white bg-opacity-10 text-white px-3 py-2 rounded-pill">
+              <i class="fas fa-motorcycle me-1 text-primary-brand"></i> 5,000+ Bikes
+            </span>
+          </div>
+          <div class="col-auto">
+            <span class="badge bg-white bg-opacity-10 text-white px-3 py-2 rounded-pill">
+              <i class="fas fa-map-marker-alt me-1 text-primary-brand"></i> 50+ Cities
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+
     <!-- VEHICLES SECTIONS -->
-    <div class="py-5">
+    <main class="py-5 bg-light-brand">
       <div class="container" id="vehicles-container">
-        <!-- rendered by script.js -->
+        <!-- Rendered by script.js -->
       </div>
-    </div>
-    <!-- FOOTER CONTAINER -->
+    </main>
+
+    <!-- FOOTER -->
     <div id="footer-container"></div>
-    <!-- FLOATING WHATSP BUTTON-->
+
+    <!-- FLOATING WHATSAPP -->
     <div id="floating-whatsapp"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
