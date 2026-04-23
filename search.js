@@ -37,7 +37,7 @@ function filterVehicles(keyword, category, city, priceRange) {
     });
   }
  return results;
-}// Render search results
+}// Render search result
 function renderSearchResults(vehicles) {
   const container = document.getElementById("search-results");
   const infoContainer = document.getElementById("results-info");
