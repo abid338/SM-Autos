@@ -10,18 +10,18 @@ function filterVehicles(keyword, category, city, priceRange) {
   if (category) {
     results = results.filter(v => v.category === category);
   }
-// Filter by keyword 
+  // Filter by keyword 
   if (keyword) {
     const searchTerm = keyword.toLowerCase();
     results = results.filter(v => 
       v.name.toLowerCase().includes(searchTerm)
     );
   }
-// Filter by city
+  // Filter by city
   if (city) {
     results = results.filter(v => v.location === city);
   }
-// Filter by price range
+  // Filter by price range
   if (priceRange && priceRange !== "All Prices") {
     results = results.filter(v => {
       const price = v.price;
@@ -36,8 +36,10 @@ function filterVehicles(keyword, category, city, priceRange) {
       return true;
     });
   }
- return results;
-}// Render search result
+  return results;
+}
+
+// Render search results
 function renderSearchResults(vehicles) {
   const container = document.getElementById("search-results");
   const infoContainer = document.getElementById("results-info");
@@ -52,13 +54,13 @@ function renderSearchResults(vehicles) {
     container.innerHTML = "";
     return;
   }
-infoContainer.innerHTML = `
+  infoContainer.innerHTML = `
     <div class="d-flex align-items-center gap-2">
       <i class="fas fa-check-circle text-success"></i>
       <span class="text-muted">Found <strong>${vehicles.length}</strong> vehicle(s)</span>
     </div>
   `;
-let html = "";
+  let html = "";
   vehicles.forEach((vehicle) => {
     const badgeClass = vehicle.status === "NEW" ? "bg-success" : "bg-warning";
     html += `
@@ -82,13 +84,16 @@ let html = "";
   });
   container.innerHTML = html;
 }
+
 function performSearch() {
   const keyword = document.getElementById("keyword-input").value;
   const city = document.getElementById("city-filter").value;
   const priceRange = document.getElementById("price-filter").value;
   const category = getUrlParameter("category");
-const results = filterVehicles(keyword, category, city, priceRange);
+
+  const results = filterVehicles(keyword, category, city, priceRange);
   renderSearchResults(results);
+
   const heading = document.getElementById("search-heading");
   if (heading) {
     if (category) {
@@ -100,22 +105,28 @@ const results = filterVehicles(keyword, category, city, priceRange);
     }
   }
 }
+
 // Initialize search page
 window.onload = function() {
+  document.title = `Search Vehicles - ${BRAND_NAME}`; 
   renderCities('city-filter');
   renderPriceRanges('price-filter');
   renderNavbar();
   renderFooter();
   renderFloatingWhatsApp();
+
   const urlCategory = getUrlParameter("category");
   const urlKeyword = getUrlParameter("keyword");
   const urlCity = getUrlParameter("city");
   const urlPrice = getUrlParameter("price");
-if (urlKeyword) document.getElementById("keyword-input").value = urlKeyword;
+
+  if (urlKeyword) document.getElementById("keyword-input").value = urlKeyword;
   if (urlCity) document.getElementById("city-filter").value = urlCity;
   if (urlPrice) document.getElementById("price-filter").value = urlPrice;
+
   performSearch();
-// Add event listener 
+
+  // Add event listeners
   const searchBtn = document.getElementById("search-btn");
   if (searchBtn) {
     searchBtn.addEventListener("click", performSearch);

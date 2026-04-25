@@ -78,6 +78,7 @@ function setupHeroSearch() {
 
 // Initialize main page
 window.onload = function () {
+  document.title = `${BRAND_NAME} - Buy & Sell Vehicles`; 
   renderNavbar();
   renderFooter();
   renderFloatingWhatsApp();
