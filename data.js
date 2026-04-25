@@ -1,4 +1,4 @@
-const BRAND_NAME = "Abid-Autos";
+const BRAND_NAME = "SM-Autos";
 const BRAND_TAGLINE = "Pakistan's #1 platform for buying and selling vehicles. Find your dream car or bike today!";
 const BRAND_YEAR = "2026";
 
