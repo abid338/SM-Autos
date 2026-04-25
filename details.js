@@ -8,7 +8,9 @@ function findVehicleById(vehicleId) {
     }
   }
   return null;
-} // Render vehicle details
+}
+
+// Render vehicle details
 function renderVehicleDetails(vehicle) {
   const container = document.getElementById("vehicle-details");
   if (!container || !vehicle) {
@@ -24,22 +26,23 @@ function renderVehicleDetails(vehicle) {
     `;
     return;
   }
+
   // breadcrumb
   const breadcrumb = document.getElementById("breadcrumb-title");
   if (breadcrumb) {
     breadcrumb.textContent = vehicle.name;
   }
-  // page title
-  document.title = `${vehicle.name} - PakWheels`;
+
+  // page title — BRAND_NAME from data.js
+  document.title = `${vehicle.name} - ${BRAND_NAME}`;
+
   const badgeClass = vehicle.status === "NEW" ? "bg-success" : "bg-warning";
   const html = `
     <div class="row g-4">
       <!-- Vehicle Image -->
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm">
-          <img src="${vehicle.image}" class="card-img-top rounded" alt="${
-    vehicle.name
-  }" style="max-height: 400px; object-fit: cover;">
+          <img src="${vehicle.image}" class="card-img-top rounded" alt="${vehicle.name}" style="max-height: 400px; object-fit: cover;">
           <div class="card-body">
             <span class="badge ${badgeClass} mb-2">${vehicle.status}</span>
             <p class="text-muted small mb-0">
@@ -48,7 +51,8 @@ function renderVehicleDetails(vehicle) {
           </div>
         </div>
       </div>
-<!-- Vehicle Info -->
+
+      <!-- Vehicle Info -->
       <div class="col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body">
@@ -56,7 +60,8 @@ function renderVehicleDetails(vehicle) {
             <h3 class="text-danger fw-bold mb-4">PKR ${vehicle.price.toLocaleString()}</h3>
             <h5 class="fw-semibold mb-3">Description</h5>
             <p class="text-muted mb-4">${vehicle.description}</p>
-<h5 class="fw-semibold mb-3">Specifications</h5>
+
+            <h5 class="fw-semibold mb-3">Specifications</h5>
             <div class="row g-3 mb-4">
               <div class="col-6">
                 <div class="d-flex align-items-center gap-2">
@@ -113,12 +118,9 @@ function renderVehicleDetails(vehicle) {
                 </div>
               </div>
             </div>
+
             <div class="d-grid gap-2">
-              <a href="https://wa.me/${
-                contactInfo.whatsapp
-              }?text=Aoa!, I'm interested in ${encodeURIComponent(
-    vehicle.name
-  )} - PKR ${vehicle.price.toLocaleString()}" 
+              <a href="https://wa.me/${contactInfo.whatsapp}?text=Aoa!, I'm interested in ${encodeURIComponent(vehicle.name)} - PKR ${vehicle.price.toLocaleString()}" 
                  target="_blank"
                  class="btn btn-success btn-lg">
                 <i class="fab fa-whatsapp"></i> Contact via WhatsApp
@@ -128,7 +130,8 @@ function renderVehicleDetails(vehicle) {
         </div>
       </div>
     </div>
-<!-- Additional Info -->
+
+    <!-- Additional Info -->
     <div class="row mt-4">
       <div class="col-12">
         <div class="card border-0 shadow-sm">
@@ -138,9 +141,7 @@ function renderVehicleDetails(vehicle) {
               <div class="col-md-4">
                 <p class="mb-2">
                   <i class="fas fa-check-circle text-success"></i>
-                  <strong>Condition:</strong> ${
-                    vehicle.status === "NEW" ? "Brand New" : "Used - Excellent"
-                  }
+                  <strong>Condition:</strong> ${vehicle.status === "NEW" ? "Brand New" : "Used - Excellent"}
                 </p>
               </div>
               <div class="col-md-4">
@@ -152,7 +153,7 @@ function renderVehicleDetails(vehicle) {
               <div class="col-md-4">
                 <p class="mb-2">
                   <i class="fas fa-check-circle text-success"></i>
-                  <strong>Documents:</strong> Complete 
+                  <strong>Documents:</strong> Complete
                 </p>
               </div>
             </div>
@@ -163,6 +164,7 @@ function renderVehicleDetails(vehicle) {
   `;
   container.innerHTML = html;
 }
+
 // Find related vehicles
 function findRelatedVehicles(currentVehicle, limit = 4) {
   const related = [];
@@ -179,6 +181,7 @@ function findRelatedVehicles(currentVehicle, limit = 4) {
   }
   return related;
 }
+
 // Render related vehicles
 function renderRelatedVehicles(vehicles) {
   const container = document.getElementById("related-vehicles");
@@ -197,9 +200,7 @@ function renderRelatedVehicles(vehicles) {
     html += `
       <div class="col-lg-3 col-md-6">
         <div class="card vehicle-card border-0 shadow-sm h-100">
-          <img src="${vehicle.image}" class="card-img-top" alt="${
-      vehicle.name
-    }">
+          <img src="${vehicle.image}" class="card-img-top" alt="${vehicle.name}">
           <div class="card-body">
             <span class="badge ${badgeClass} mb-2">${vehicle.status}</span>
             <h5 class="card-title fw-semibold">${vehicle.name}</h5>
@@ -208,23 +209,21 @@ function renderRelatedVehicles(vehicles) {
               <i class="fas fa-calendar"></i> ${vehicle.year} | 
               <i class="fas fa-cog"></i> ${vehicle.engine}
             </p>
-            <a href="details.html?id=${
-              vehicle.id
-            }" class="btn btn-danger w-100">View Details</a>
+            <a href="details.html?id=${vehicle.id}" class="btn btn-danger w-100">View Details</a>
           </div>
         </div>
       </div>
     `;
   });
-
   container.innerHTML = html;
 }
+
 // Initialize details page
 window.onload = function () {
   renderNavbar();
   renderFooter();
   renderFloatingWhatsApp();
-  // Get vehicle ID from URL
+
   const vehicleId = getUrlParameter("id");
   if (!vehicleId) {
     const container = document.getElementById("vehicle-details");
@@ -240,10 +239,10 @@ window.onload = function () {
     `;
     return;
   }
-  // Find and render vehicle
+
   const vehicle = findVehicleById(vehicleId);
   renderVehicleDetails(vehicle);
-  // Render related vehicles if vehicle found
+
   if (vehicle) {
     const relatedVehicles = findRelatedVehicles(vehicle);
     renderRelatedVehicles(relatedVehicles);

@@ -1,3 +1,7 @@
+const BRAND_NAME = "SM-Autos";
+const BRAND_TAGLINE = "Pakistan's #1 platform for buying and selling vehicles. Find your dream car or bike today!";
+const BRAND_YEAR = "2026";
+
 //  NAVBAR DATA
 const navbarMenuItems = [
   {
@@ -25,7 +29,8 @@ const navbarMenuItems = [
     type: "link",
   },
 ];
-// NAVBAR HTML TEMPLATE
+
+// NAVBAR HTML
 function getNavbarHTML() {
   return `
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
@@ -34,7 +39,7 @@ function getNavbarHTML() {
           <div class="logo rounded-circle d-flex align-items-center justify-content-center fs-4">
             <i class="fas fa-car"></i>
           </div>
-          PakWheels
+          ${BRAND_NAME}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -48,7 +53,8 @@ function getNavbarHTML() {
     </nav>
   `;
 }
-// 1.3 - NAVBAR RENDER FUNCTIONS
+
+// NAVBAR RENDER FUNCTIONS
 function renderNavbar() {
   const container = document.getElementById("navbar-container");
   if (!container) return;
@@ -56,6 +62,7 @@ function renderNavbar() {
   container.innerHTML = getNavbarHTML();
   renderNavbarMenu();
 }
+
 function renderNavbarMenu() {
   const container = document.getElementById("navbar-menu");
   if (!container) return;
@@ -91,6 +98,7 @@ function renderNavbarMenu() {
   });
   container.innerHTML = html;
 }
+
 // HERO SECTION DATA
 const cities = [
   "All Cities",
@@ -115,6 +123,7 @@ const priceRanges = [
   "50 Lacs - 1 Crore",
   "Above 1 Crore",
 ];
+
 // HERO SECTION RENDER FUNCTIONS
 function renderCities(selectId) {
   const container = document.getElementById(selectId);
@@ -137,6 +146,7 @@ function renderPriceRanges(selectId) {
   });
   container.innerHTML = html;
 }
+
 //  VEHICLE DATA
 const vehiclesData = [
   {
@@ -420,10 +430,7 @@ const vehiclesData = [
   },
 ];
 
-// 4. FOOTER SECTION
-// ============================================
-
-// 4.1 - FOOTER DATA
+// FOOTER DATA
 const contactInfo = {
   phoneFormatted: "+92 309 6527842",
   whatsapp: "923096527842",
@@ -444,7 +451,8 @@ const socialLinks = [
   { icon: "fab fa-facebook-f", href: "#" },
   { icon: "fab fa-tiktok", href: "#" },
 ];
-//  FOOTER HTML TEMPLATE
+
+// FOOTER HTML TEMPLATE
 function getFooterHTML() {
   return `
     <footer class="bg-dark text-white py-5 mt-5">
@@ -452,12 +460,9 @@ function getFooterHTML() {
         <div class="row g-4">
           <div class="col-lg-3">
             <h5 class="fw-bold mb-3">
-              <a href="index.html" class="text-white text-decoration-none">PakWheels</a>
+              <a href="index.html" class="text-white text-decoration-none">${BRAND_NAME}</a>
             </h5>
-            <p class="text-white-50">
-              Pakistan's #1 platform for buying and selling vehicles. Find your
-              dream car or bike today!
-            </p>
+            <p class="text-white-50">${BRAND_TAGLINE}</p>
           </div>
           
           <div class="col-lg-3">
@@ -483,23 +488,24 @@ function getFooterHTML() {
         </div>
         <hr class="my-4 bg-white opacity-25" />
         <div class="text-center text-white-50">
-          <p class="mb-0">&copy; 2026 PakWheels. All Rights Reserved.</p>
+          <p class="mb-0">&copy; ${BRAND_YEAR} ${BRAND_NAME}. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
   `;
 }
-//  FOOTER RENDER FUNCTIONS
+
+// FOOTER RENDER FUNCTIONS
 function renderFooter() {
   const container = document.getElementById("footer-container");
   if (!container) return;
 
   container.innerHTML = getFooterHTML();
-  // Footer inner sections render
   renderContactInfo();
   renderFooterLinks();
   renderSocialLinks();
 }
+
 function renderContactInfo() {
   const container = document.getElementById("contact-info");
   if (!container) return;
@@ -524,6 +530,7 @@ function renderContactInfo() {
   `;
   container.innerHTML = html;
 }
+
 function renderFooterLinks() {
   const container = document.getElementById("footer-links");
   if (!container) return;
@@ -538,6 +545,7 @@ function renderFooterLinks() {
   });
   container.innerHTML = html;
 }
+
 function renderSocialLinks() {
   const container = document.getElementById("social-links");
   if (!container) return;
@@ -551,6 +559,7 @@ function renderSocialLinks() {
   });
   container.innerHTML = html;
 }
+
 // FLOATING WHATSAPP BUTTON
 function getFloatingWhatsAppHTML() {
   return `
@@ -562,12 +571,13 @@ function getFloatingWhatsAppHTML() {
     </a>
   `;
 }
-// WHATSAPP BUTTON RENDER FUNCTION
+
 function renderFloatingWhatsApp() {
   const container = document.getElementById("floating-whatsapp");
   if (!container) return;
   container.innerHTML = getFloatingWhatsAppHTML();
 }
+
 // Get URL parameter for search
 function getUrlParameter(name) {
   const urlParams = new URLSearchParams(window.location.search);
